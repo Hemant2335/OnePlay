@@ -1,21 +1,77 @@
 <script>
-    import { onMount } from "svelte"; 
-    import {useFetch} from "../hooks/useFetch.js";
-    $: poster = [];
-    async function load() {
-      try {
-        const endpoint = "upcoming";
-        poster = await useFetch(endpoint);  
-        console.log(poster);    
-      } catch (error) {
-        console.log(error)
-      }
-    }
-    onMount(load);
+	import { onMount } from 'svelte';
+	import { useFetch } from '../hooks/useFetch.js';
+	$: poster = [];
+	async function load() {
+		try {
+			const endpoint = 'now_playing';
+			poster = await useFetch(endpoint);
+			console.log(poster);
+		} catch (error) {
+			console.log(error);
+		}
+	}
+	onMount(load);
+
+	function nextslide() {
+		const slider = document.querySelector('.slider');
+
+		if (slider) {
+			// Calculate the width of each slide item
+			const slideWidth = slider.firstElementChild.clientWidth;
+			console.log(slideWidth);
+			// Calculate the next scroll position
+			const nextScrollLeft = slider.scrollLeft + slideWidth + 300;
+			console.log(slideWidth);
+			// Check if the next scroll position is within bounds
+			if (nextScrollLeft <= slider.scrollWidth - slider.clientWidth) {
+				slider.scrollLeft = nextScrollLeft;
+			}
+      
+		}
+	}
+	function prevslide() {
+		const slider = document.querySelector('.slider');
+
+		if (slider) {
+			// Calculate the width of each slide item
+			const slideWidth = slider.firstElementChild.clientWidth;
+			console.log(slideWidth);
+			// Calculate the next scroll position
+			const nextScrollRight = slider.scrollLeft - slideWidth - 300;
+			console.log(slideWidth);
+			// Check if the next scroll position is within bounds
+			if (nextScrollRight <= slider.scrollWidth + slider.clientWidth) {
+				slider.scrollLeft = nextScrollRight;
+			}
+		}
+	}
+
 </script>
 
-    <div class="snap-x scroll-px-4 h-[50vh] snap-mandatory scroll-smooth flex gap-4 overflow-x-auto px-4 py-10">
-        {#each poster as movie} 
-            <img src={"https://image.tmdb.org/t/p/w500/" + movie.poster_path} alt="poster" class="w-full h-full rounded-md object-cover">
-        {/each}
-    </div>
+<div class="relative">
+<h1 class="text-2xl font-semibold p-4">Top Rated</h1>
+<button on:click={prevslide} class="absolute z-10 left-[5vh] top-[45%] bg-[#222222] text-red-400 rounded-md p-2">Prev</button>
+<div  class="w-full p-4 flex slider overflow-x-hidden transition-transform gap-[5vh] relative">
+  
+	{#each poster as movie}
+  <div class="p-2">
+    <img
+			src={'https://image.tmdb.org/t/p/w500/' + movie.backdrop_path}
+			alt="poster"
+			class="min-w-[90vh] h-full rounded-md object-cover"
+		/>
+  </div>
+	{/each}
+  
+</div>
+<button on:click={nextslide} class="absolute right-[5vh] top-[45%] text-red-400 bg-[#222222] rounded-md p-2">Next</button>
+</div>
+
+
+
+
+
+
+
+
