@@ -1,7 +1,6 @@
 <script>
     import { onMount } from "svelte"; 
     import {useFetch} from "../hooks/useFetch.js";
-    export let movies;
     $: popular = [];
     async function load() {
       try {
