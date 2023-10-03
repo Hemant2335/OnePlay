@@ -1,10 +1,11 @@
 <script>
 	import { onMount } from 'svelte';
 	import { useFetch } from '../hooks/useFetch.js';
+  export let Name;
+  export let endpoint;
 	$: poster = [];
 	async function load() {
 		try {
-			const endpoint = 'popular';
 			poster = await useFetch(endpoint);
 			console.log(poster);
 		} catch (error) {
@@ -50,14 +51,14 @@
 </script>
 
 <div class="relative">
-<h1 class="text-2xl font-semibold p-4">Poplar</h1>
+<h1 class="text-2xl font-semibold p-4">{Name}</h1>
 <button on:click={prevslide} class="absolute z-10 left-[5vh] top-[45%] bg-[#222222] text-red-400 rounded-md p-2">Prev</button>
 <div  class="w-full p-4 flex sliderpop overflow-x-hidden transition-transform gap-[5vh] relative">
   
 	{#each poster as movie}
-  <div class="p-2">
+  <div class="p-2 hover:scale-105 transition-transform cursor-pointer">
     <img src={"https://image.tmdb.org/t/p/w500/" + movie.poster_path} alt="poster" class="min-w-[15vw] rounded-xl object-cover">
-    <p class="text-sm font-semibold">{movie.original_title}</p>
+    <p class="text-sm font-semibold mt-2 text-center">{movie.original_title}</p>
   </div>
 	{/each}
   

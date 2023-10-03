@@ -6,4 +6,6 @@
 
 <Navbar/>
 <Poster/>
-<PopMovies/>
+<PopMovies Name = "Popular" endpoint = "popular"/>
+<PopMovies Name = "Upcoming" endpoint = "upcoming"/>
+<PopMovies Name = "Top rated" endpoint = "top_rated"/>

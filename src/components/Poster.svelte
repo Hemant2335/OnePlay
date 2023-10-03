@@ -50,12 +50,11 @@
 </script>
 
 <div class="relative">
-<h1 class="text-2xl font-semibold p-4">Top Rated</h1>
 <button on:click={prevslide} class="absolute z-10 left-[5vh] top-[45%] bg-[#222222] text-red-400 rounded-md p-2">Prev</button>
 <div  class="w-full p-4 flex slider overflow-x-hidden transition-transform gap-[5vh] relative">
   
 	{#each poster as movie}
-  <div class="p-2">
+  <div class="p-2 hover:scale-105 transition-transform cursor-pointer">
     <img
 			src={'https://image.tmdb.org/t/p/w500/' + movie.backdrop_path}
 			alt="poster"
