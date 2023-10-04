@@ -31,7 +31,7 @@
 		}
 	}
 	function prevslide() {
-		const slider = document.querySelector('.slider');
+		const slider = document.querySelector(`.slider`);
 
 		if (slider) {
 			// Calculate the width of each slide item

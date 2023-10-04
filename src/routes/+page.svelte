@@ -4,7 +4,7 @@
     import Poster from "../components/Poster.svelte";
 </script>
 
-<Navbar/>
+
 <Poster/>
 <PopMovies Name = "Popular" endpoint = "popular"/>
 <PopMovies Name = "Upcoming" endpoint = "upcoming"/>

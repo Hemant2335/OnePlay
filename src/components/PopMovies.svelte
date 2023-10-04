@@ -15,8 +15,7 @@
 	onMount(load);
 
 	function nextslide() {
-		const slider = document.querySelector('.sliderpop');
-
+		const slider = document.querySelector(`#${endpoint}`);
 		if (slider) {
 			// Calculate the width of each slide item
 			const slideWidth = slider.firstElementChild.clientWidth;
@@ -32,8 +31,7 @@
 		}
 	}
 	function prevslide() {
-		const slider = document.querySelector('.sliderpop');
-
+		const slider = document.querySelector(`#${endpoint}`);
 		if (slider) {
 			// Calculate the width of each slide item
 			const slideWidth = slider.firstElementChild.clientWidth;
@@ -47,19 +45,18 @@
 			}
 		}
 	}
-
 </script>
 
 <div class="relative">
 <h1 class="text-2xl font-semibold p-4">{Name}</h1>
 <button on:click={prevslide} class="absolute z-10 left-[5vh] top-[45%] bg-[#222222] text-red-400 rounded-md p-2">Prev</button>
-<div  class="w-full p-4 flex sliderpop overflow-x-hidden transition-transform gap-[5vh] relative">
+<div id={endpoint}  class="w-full p-4 flex sliderpop overflow-x-hidden transition-transform gap-[5vh] relative">
   
 	{#each poster as movie}
-  <div class="p-2 hover:scale-105 transition-transform cursor-pointer">
+  <a href={"/Details/" + movie.id}><div class="p-2 hover:scale-105 transition-transform cursor-pointer">
     <img src={"https://image.tmdb.org/t/p/w500/" + movie.poster_path} alt="poster" class="min-w-[15vw] rounded-xl object-cover">
     <p class="text-sm font-semibold mt-2 text-center">{movie.original_title}</p>
-  </div>
+  </div></a>
 	{/each}
   
 </div>
