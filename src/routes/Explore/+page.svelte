@@ -4,7 +4,7 @@
   
   
   <div class="relative">
-    <h1 class="text-2xl font-semibold p-4">Search Results</h1>
+    <h1 class="text-2xl font-semibold p-4">Explore</h1>
     <div class="w-full p-4 grid grid-cols-3 sliderpop   gap-[5vh] relative">
       {#each data.props as movie}
       <a href={"/Details/" + movie.id}><div class="p-2 hover:scale-105 transition-transform cursor-pointer">
