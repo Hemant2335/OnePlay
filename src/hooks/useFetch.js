@@ -10,7 +10,6 @@ export async function useFetch(endpoint)
         }
   
         const data = await res.json();
-        c
         return data?.results;
       } catch (error) {
         console.error("An error occurred:", error);
